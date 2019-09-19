@@ -1,0 +1,63 @@
+qp:
+   # RNIC transport mode, current: RC, candidate: UD
+   qp_transport_mode: RC
+   # Create qp method, current: verbs, candiate: rdma_cm
+   qp_create_method: verbs
+   # How long to wait before retrying if packet lost or server dead, current: 4.096us * 2^(18 + 1)
+   qp_timeout: 18
+   # How many times to retry after timeouts before giving up.
+   retry_cnt: 7
+   # How many times to retry after RNR (receiver not ready) condition
+   # before giving up. Occurs when the remote side has not yet posted
+   # a receive request.
+   rnr_retry: 7
+
+rq:
+   # Use srq or not, current: srq, candidate: non-srq
+   srq: true
+   srq_depths_sq: 10
+   rq_depth: 4096
+
+sq:
+   # SQ depth
+   sq_depth: 4096
+   # Max burst wr at one time
+   burst_wr_max: 1024
+
+wqe:
+   # send queue WQE with inline, current: false, candiate: true
+   use_inline: false
+   # max inline data size
+   inline_size: 128
+   # SGEs per WR, current: 1, no other candiate
+   sge_per_wqe: 1
+
+sge:
+   # SGE buffer length
+   sge_length: 4096
+
+hugepage:
+   # Use hugepages to memory region, current: false, candidate: true
+   use_hugepage: false
+
+connection:
+   # Establish connection, current: rdma_cm, candidate: tcp
+   connection_method: rdma_cm
+   server_ip_addr: 192.168.199.222
+   server_cm_port: 18515
+
+server:
+   # connection server ip address
+   server_ip_addr: 192.168.199.222
+   server_cm_port: 18515
+   server_threads: 1
+
+client:
+   # connection client ip address
+   client_ip_addr: 192.168.199.223
+   client_threads: 10
+   data_per_thread: 34359738368
+
+test:
+   # From QP connection to QP dead time, current: 10 seconds
+   time_duration: 10000
